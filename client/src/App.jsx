@@ -3,10 +3,12 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Characters from "./pages/Characters";
 import Chat from "./pages/Chat";
+import Navbar from "./components/Navbar";
 
 export default function App() {
   return (
     <BrowserRouter>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
