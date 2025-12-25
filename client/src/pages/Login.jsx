@@ -3,6 +3,8 @@ import { api } from "../services/api";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
 
+const BACKGROUND_IMAGE = "https://res.cloudinary.com/di75recky/image/upload/v1766651473/ChatGPT_Image_Dec_25_2025_02_00_14_PM_iobhpc.png"
+
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,8 +28,14 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0b0b0f] flex items-center justify-center p-4">
-      <div className="bg-[#18181b] p-8 rounded-2xl shadow-2xl w-full max-w-md border border-white/5">
+    <div
+      className="min-h-screen bg-[#0b0b0f] flex items-center justify-center p-4 bg-cover bg-center bg-no-repeat relative"
+      style={{ backgroundImage: `url(${BACKGROUND_IMAGE})` }}
+    >
+      {/* Dark overlay for better text readability */}
+      <div className="absolute inset-0 bg-black/60 pointer-events-none" />
+
+      <div className="bg-[#18181b]/80 backdrop-blur-md p-8 rounded-2xl shadow-2xl w-full max-w-md border border-white/10 relative z-10">
         <h2 className="text-3xl font-bold text-white mb-6 text-center tracking-wide">
           Welcome Back
         </h2>

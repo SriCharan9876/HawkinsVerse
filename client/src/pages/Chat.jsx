@@ -2,6 +2,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 import { api } from "../services/api";
 
+const BACKGROUND_IMAGE = "https://res.cloudinary.com/di75recky/image/upload/v1766651473/ChatGPT_Image_Dec_25_2025_02_00_14_PM_iobhpc.png";
+
 export default function Chat() {
   const { characterId } = useParams();
   const nav = useNavigate();
@@ -83,12 +85,18 @@ export default function Chat() {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-[#0b0b0f]">
+    <div
+      className="flex flex-col h-screen bg-[#0b0b0f] bg-cover bg-center bg-no-repeat bg-fixed relative "
+      style={{ backgroundImage: `url(${BACKGROUND_IMAGE})` }}
+    >
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-black/70 pointer-events-none" />
+
       {/* HEADER */}
-      <div className="p-4 bg-[#18181b] border-b border-white/5 flex items-center shadow-md z-10 sticky top-0">
+      <div className="py-2 px-6 md:px-48 bg-[#18181b]/80 backdrop-blur-md border-b border-white/5 flex items-center shadow-md z-30 sticky top-16">
         <button
           onClick={() => nav('/characters')}
-          className="text-gray-400 hover:text-white mr-4 transition-colors"
+          className="text-gray-400 hover:text-white mr-16 transition-colors"
         >
           &larr; Back
         </button>
@@ -108,7 +116,7 @@ export default function Chat() {
 
       {/* CHAT AREA */}
       <div
-        className="flex-1 overflow-y-auto p-4 pb-28 space-y-4"
+        className="flex-1 overflow-y-auto p-4 pb-28 space-y-4 relative z-10"
         ref={scrollRef}
       >
         <div className="max-w-5xl mx-auto space-y-4">
@@ -141,7 +149,7 @@ export default function Chat() {
       </div>
 
       {/* INPUT AREA */}
-      <div className="sticky bottom-0 z-20 p-4 bg-[#18181b] border-t border-white/5 ">
+      <div className="sticky bottom-0 z-20 p-4 bg-[#18181b]/80 backdrop-blur-md border-t border-white/5 ">
         <div className="max-w-4xl mx-auto flex gap-3">
           {isAuthenticated ? (
             <>

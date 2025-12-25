@@ -27,8 +27,12 @@ export default function Navbar() {
         navigate("/");
     };
 
+    // Make navbar transparent on Login, Register, Characters pages
+    // We can basically say it's transparent on all these main pages
+    const isTransparentPage = ["/", "/register", "/characters"].includes(location.pathname);
+
     return (
-        <nav className="bg-netflix-black/90 backdrop-blur-md border-b border-white/5 sticky top-0 z-50 shadow-lg shadow-black/40">
+        <nav className={`${isTransparentPage ? 'absolute w-full bg-transparent border-transparent' : 'bg-netflix-black/90 backdrop-blur-md border-b border-white/5 sticky top-0 shadow-lg shadow-black/40'} z-50 transition-all duration-300`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
                     {/* Logo */}
