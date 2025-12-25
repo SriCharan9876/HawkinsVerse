@@ -1,7 +1,7 @@
 import express from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import User from "../models/User.js";
+import User from "../models/user.js";
 import Otp from "../models/Otp.js";
 import sendEmail from "../utils/sendEmail.js";
 
