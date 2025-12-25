@@ -142,7 +142,7 @@ export default function Register() {
                   }}
                   theme="filled_black"
                   shape="pill"
-                  width="100%"
+                  width={300}
                 />
               </div>
             </>
