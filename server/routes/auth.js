@@ -11,7 +11,6 @@ const router = express.Router();
 router.post("/register", async (req, res) => {
   try {
     const { name, email, password } = req.body;
-    console.log(req.body);
 
     let user = await User.findOne({ email });
     if (user && user.isVerified) {
@@ -34,8 +33,6 @@ router.post("/register", async (req, res) => {
       { otp, createdAt: Date.now() },
       { upsert: true, new: true }
     );
-
-    console.log(otp);
 
     await sendEmail(email, otp);
     res.json({ msg: "OTP sent to email" });
@@ -100,7 +97,6 @@ router.post("/login", async (req, res) => {
 /* GOOGLE LOGIN */
 import { OAuth2Client } from "google-auth-library";
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
-console.log(process.env.GOOGLE_CLIENT_ID);
 
 router.post("/google", async (req, res) => {
   try {
