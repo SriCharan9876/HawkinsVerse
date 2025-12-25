@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { api } from "../services/api";
 import { useNavigate, Link, useLocation } from "react-router-dom";
+import { GoogleLogin } from "@react-oauth/google";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -63,6 +64,42 @@ export default function Login() {
           >
             Sign In
           </button>
+
+          <div className="flex items-center justify-center my-4">
+            <span className="text-gray-500 text-sm">Or continue with</span>
+          </div>
+
+          <div className="flex justify-center">
+            <GoogleLogin
+              onSuccess={async (credentialResponse) => {
+                try {
+                  if (!credentialResponse.credential) {
+                    setError("Google authentication failed");
+                    return;
+                  }
+
+                  const res = await api.post("/auth/google", {
+                    token: credentialResponse.credential,
+                  });
+                  localStorage.setItem("token", res.data.token);
+                  localStorage.setItem("userId", res.data.userId);
+                  localStorage.setItem("name", res.data.name);
+
+                  const params = new URLSearchParams(location.search);
+                  const redirect = params.get("redirect");
+                  nav(redirect || "/characters");
+                } catch (err) {
+                  setError("Google Login Failed");
+                }
+              }}
+              onError={() => {
+                setError("Google Login Failed");
+              }}
+              theme="filled_black"
+              shape="pill"
+              width="100%"
+            />
+          </div>
 
           <p className="text-center text-gray-400 text-sm mt-4">
             Don't have an account?{" "}
