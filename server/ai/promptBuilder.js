@@ -1,6 +1,11 @@
 export const buildPrompt = (systemPrompt, history, userMessage) => {
     const contents = [];
 
+    contents.push({
+        role: "user",
+        parts: [{ text: "Always reply in short spoken dialogue only. Never write paragraphs, narration, or stories." }]
+    });
+
     // Combine system prompt into first user message
     contents.push({
         role: "user",

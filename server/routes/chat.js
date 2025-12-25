@@ -66,7 +66,9 @@ router.post("/:characterId", authMiddleware, async (req, res) => {
         res.json({ message: aiReply });
     } catch (error) {
         console.error("Gemini API Error:", error.response?.data || error.message);
-        res.status(500).json({ message: "Error communicating with AI service" });
+        const status = error.response?.status || 500;
+        const message = error.response?.status === 429 ? "Quota exceeded" : "Error communicating with AI service";
+        res.status(status).json({ message });
     }
 })
 
