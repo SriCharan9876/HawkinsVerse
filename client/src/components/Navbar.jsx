@@ -29,7 +29,7 @@ export default function Navbar() {
 
     // Make navbar transparent on Login, Register, Characters pages
     // We can basically say it's transparent on all these main pages
-    const isTransparentPage = ["/", "/register", "/characters"].includes(location.pathname);
+    const isTransparentPage = ["/", "/login", "/register", "/characters", "/chat"].includes(location.pathname);
 
     return (
         <nav className={`${isTransparentPage ? 'absolute w-full bg-transparent border-transparent' : 'bg-netflix-black/90 backdrop-blur-md border-b border-white/5 sticky top-0 shadow-lg shadow-black/40'} z-50 transition-all duration-300`}>
@@ -37,7 +37,7 @@ export default function Navbar() {
                 <div className="flex items-center justify-between h-16">
                     {/* Logo */}
                     {/* Logo */}
-                    <Link to={user ? "/characters" : "/"} className="text-3xl font-stranger font-black text-netflix-red tracking-wide hover:text-red-600 transition-colors flex-shrink-0 text-glow drop-shadow-glow">
+                    <Link to="/characters" className="text-3xl font-stranger font-black text-netflix-red tracking-wide hover:text-red-600 transition-colors flex-shrink-0 text-glow drop-shadow-glow">
                         HAWKINS<span className="text-white">VERSE</span>
                     </Link>
 
@@ -64,7 +64,13 @@ export default function Navbar() {
                         ) : (
                             <div className="flex items-center gap-4">
                                 <Link
-                                    to="/"
+                                    to="/characters"
+                                    className="text-gray-400 hover:text-white font-medium transition-colors"
+                                >
+                                    Characters
+                                </Link>
+                                <Link
+                                    to="/login"
                                     className="text-gray-400 hover:text-white font-medium transition-colors"
                                 >
                                     Login
@@ -125,7 +131,13 @@ export default function Navbar() {
                         ) : (
                             <>
                                 <Link
-                                    to="/"
+                                    to="/characters"
+                                    className="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-white/5 transition-colors"
+                                >
+                                    Characters
+                                </Link>
+                                <Link
+                                    to="/login"
                                     className="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-white/5 transition-colors"
                                 >
                                     Login

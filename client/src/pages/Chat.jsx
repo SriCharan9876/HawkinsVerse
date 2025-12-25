@@ -172,7 +172,7 @@ export default function Chat() {
           ) : (
             <div className="w-full text-center">
               <button
-                onClick={() => nav('/?redirect=' + encodeURIComponent(window.location.pathname))}
+                onClick={() => nav('/login?redirect=' + encodeURIComponent(window.location.pathname))}
                 className="bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-3 rounded-xl transition-all"
               >
                 Login to Chat
